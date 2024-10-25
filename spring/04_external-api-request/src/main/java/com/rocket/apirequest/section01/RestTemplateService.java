@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
@@ -71,18 +73,19 @@ public class RestTemplateService {
         // 파일 내용을 ByteArray로 읽기
         byte[] fileContent = file.getBytes();
 
-        // 헤더 설정
+        // Multipart 요청 생성
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
-        // Multipart 요청 생성
-        HttpEntity<ByteArrayResource> requestEntity = new HttpEntity<>(
-                new ByteArrayResource(fileContent) {
-                    @Override
-                    public String getFilename() {
-                        return file.getOriginalFilename(); // 원본 파일 이름 설정
-                    }
-                }, headers);
+        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+        body.add("file", new ByteArrayResource(fileContent) {
+            @Override
+            public String getFilename() {
+                return file.getOriginalFilename(); // 원본 파일 이름 설정
+            }
+        });
+
+        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
 
         // API 호출
         ResponseEntity<String> response = restTemplate.exchange("http://localhost:8000/uploadfile", HttpMethod.POST, requestEntity, String.class);

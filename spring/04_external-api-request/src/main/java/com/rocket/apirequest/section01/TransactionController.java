@@ -3,6 +3,7 @@ package com.rocket.apirequest.section01;
 import com.rocket.apirequest.section01.dto.RequestDTO;
 import com.rocket.apirequest.section01.dto.ResponseDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -66,8 +67,9 @@ public class TransactionController {
         return result;
     }
 
-    @PostMapping("/uploadfile")
-    public ResponseEntity<String> upload(@RequestParam("file") MultipartFile file){
+    @PostMapping(value = "/uploadfile", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> upload(
+            @RequestPart("file") MultipartFile file){
         try {
             String result = restTemplateService.uploadFile(file);
             return ResponseEntity.ok(result);
