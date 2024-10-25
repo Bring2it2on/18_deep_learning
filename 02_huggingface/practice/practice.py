@@ -5,5 +5,3 @@ app = FastAPI()
 
 app.include_router(route.router)
 
-
-
