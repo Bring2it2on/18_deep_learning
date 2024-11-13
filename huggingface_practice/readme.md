@@ -12,13 +12,13 @@
 
 **** 이미지 업로드 페이지 ****
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/2e42b292-3597-492a-9d2f-caaf0ff36a48/dd70331a-f023-4318-b8d4-ce917b430f3f/image.png)
+![image.png](./img/image1.webp)
     
 
 **** 결과 화면 1 ****
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/2e42b292-3597-492a-9d2f-caaf0ff36a48/1c51e9a4-5c92-415b-b0d9-c6f52b51d2d2/image.png)
+![image.png](./img/image2.png)
 
 **** 결과 화면 2 (평균 신뢰도 추가)****
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/2e42b292-3597-492a-9d2f-caaf0ff36a48/299f85f2-8936-49ef-967f-699d7a0ad6b2/image.png)
+![image.png](./img/image3.webp)
